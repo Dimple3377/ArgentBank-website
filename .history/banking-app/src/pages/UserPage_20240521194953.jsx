@@ -1,24 +1,32 @@
-import React, { useEffect, useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { fetchUserProfile } from "../store/userSlice";
+import { useNavigate } from "react-router-dom";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
 import EditNameForm from "../components/EditNameForm";
+import { fetchUserProfile } from "../store/userSlice"; // Assure-toi que cette action est définie
 
 const UserPage = () => {
-  const dispatch = useDispatch();
-  const { user, status, error } = useSelector((state) => state.user);
   const [isEditing, setIsEditing] = useState(false);
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+  const { user } = useSelector((state) => state.user);
 
   useEffect(() => {
     if (!user) {
+      navigate("/sign-in");
+    } else {
       dispatch(fetchUserProfile());
     }
-  }, [dispatch, user]);
+  }, [user, navigate, dispatch]);
 
   const toggleEdit = () => {
     setIsEditing(!isEditing);
   };
+
+  if (!user) {
+    return null;
+  }
 
   return (
     <>
@@ -28,19 +36,15 @@ const UserPage = () => {
           <h1>
             Welcome back
             <br />
-            {user ? `${user.firstName} ${user.lastName}` : "Loading..."}!
+            {user.firstName} {user.lastName}!
           </h1>
-          {!isEditing && (
-            <button className="edit-button" onClick={toggleEdit}>
-              Edit Name
-            </button>
-          )}
-          {isEditing && <h2>Edit user info</h2>}
+          <button className="edit-button" onClick={toggleEdit}>
+            {isEditing ? "Cancel" : "Edit Name"}
+          </button>
         </div>
-        {status === "loading" && <p>Loading...</p>}
-        {error && <p>{error}</p>}
-        {isEditing && <EditNameForm toggleEdit={toggleEdit} />}
-        {!isEditing && (
+        {isEditing ? (
+          <EditNameForm toggleEdit={toggleEdit} />
+        ) : (
           <div>
             <h2 className="sr-only">Accounts</h2>
             <section className="account">

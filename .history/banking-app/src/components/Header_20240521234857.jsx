@@ -1,7 +1,8 @@
-import React, { useEffect } from "react";
+// src/components/Header.jsx
+import React from "react";
 import { Link } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
-import { logout, fetchUserProfile } from "../store/userSlice";
+import { logout } from "../store/userSlice";
 import logo from "../assets/img/argentBankLogo.png";
 import "font-awesome/css/font-awesome.min.css";
 
@@ -9,17 +10,9 @@ const Header = () => {
   const dispatch = useDispatch();
   const { user } = useSelector((state) => state.user);
 
-  useEffect(() => {
-    if (!user) {
-      dispatch(fetchUserProfile());
-    }
-  }, [dispatch, user]);
-
   const handleLogout = () => {
     dispatch(logout());
   };
-
-  console.log("Current User:", user); // Debug
 
   return (
     <nav className="main-nav">

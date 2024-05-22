@@ -26,7 +26,7 @@ module.exports.loginUser = async (req, res) => {
     response.message = "User successfully logged in";
     response.body = responseFromService;
   } catch (error) {
-    console.error("Error in loginUser (userController.js)", error);
+    console.error("Error in loginUser (userController.js)");
     response.status = 400;
     response.message = error.message;
   }
@@ -43,7 +43,7 @@ module.exports.getUserProfile = async (req, res) => {
     response.message = "Successfully got user profile data";
     response.body = responseFromService;
   } catch (error) {
-    console.error("Error in userController.js", error);
+    console.log("Error in userController.js");
     response.status = 400;
     response.message = error.message;
   }
@@ -60,7 +60,7 @@ module.exports.updateUserProfile = async (req, res) => {
     response.message = "Successfully updated user profile data";
     response.body = responseFromService;
   } catch (error) {
-    console.error("Error in updateUserProfile - userController.js", error);
+    console.log("Error in updateUserProfile - userController.js");
     response.status = 400;
     response.message = error.message;
   }

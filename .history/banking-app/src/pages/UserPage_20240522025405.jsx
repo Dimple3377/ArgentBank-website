@@ -30,12 +30,9 @@ const UserPage = () => {
             <br />
             {user ? `${user.firstName} ${user.lastName}` : "Loading..."}!
           </h1>
-          {!isEditing && (
-            <button className="edit-button" onClick={toggleEdit}>
-              Edit Name
-            </button>
-          )}
-          {isEditing && <h2>Edit user info</h2>}
+          <button className="edit-button" onClick={toggleEdit}>
+            {isEditing ? "Edit user info" : "Edit Name"}
+          </button>
         </div>
         {status === "loading" && <p>Loading...</p>}
         {error && <p>{error}</p>}

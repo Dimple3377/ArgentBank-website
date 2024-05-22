@@ -5,54 +5,49 @@ import { updateUser } from "../store/userSlice";
 const EditNameForm = ({ toggleEdit }) => {
   const dispatch = useDispatch();
   const { user } = useSelector((state) => state.user);
-
   const [firstName, setFirstName] = useState(user?.firstName || "");
   const [lastName, setLastName] = useState(user?.lastName || "");
   const [userName, setUserName] = useState(user?.userName || "");
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    dispatch(updateUser({ firstName, lastName, userName })).then(() => {
-      toggleEdit();
-    });
+  const handleSave = () => {
+    dispatch(updateUser({ firstName, lastName, userName }));
+    toggleEdit();
   };
 
   return (
-    <form onSubmit={handleSubmit}>
+    <div className="edit-user-info">
+      <h2>Edit user info</h2>
       <div className="input-wrapper">
-        <label htmlFor="userName">User name:</label>
+        <label htmlFor="username">User name:</label>
         <input
           type="text"
-          id="userName"
+          id="username"
           value={userName}
           onChange={(e) => setUserName(e.target.value)}
         />
       </div>
       <div className="input-wrapper">
-        <label htmlFor="firstName">First name:</label>
+        <label htmlFor="firstname">First name:</label>
         <input
           type="text"
-          id="firstName"
+          id="firstname"
           value={firstName}
           onChange={(e) => setFirstName(e.target.value)}
         />
       </div>
       <div className="input-wrapper">
-        <label htmlFor="lastName">Last name:</label>
+        <label htmlFor="lastname">Last name:</label>
         <input
           type="text"
-          id="lastName"
+          id="lastname"
           value={lastName}
           onChange={(e) => setLastName(e.target.value)}
         />
       </div>
-      <button type="submit" className="edit-button">
+      <button className="save-button" onClick={handleSave}>
         Save
       </button>
-      <button type="button" className="edit-button" onClick={toggleEdit}>
-        Cancel
-      </button>
-    </form>
+    </div>
   );
 };
 

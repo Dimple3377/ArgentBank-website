@@ -9,12 +9,12 @@ module.exports.validateToken = (req, res, next) => {
       throw new Error("Token is missing from header");
     }
 
-    const userToken = req.headers.authorization.split("Bearer ")[1].trim();
+    const userToken = req.headers.authorization.split("Bearer")[1].trim();
     const decodedToken = jwt.verify(
       userToken,
       process.env.SECRET_KEY || "default-secret-key"
     );
-    req.user = decodedToken; // Store decoded token in request
+    req.user = decodedToken;
     return next();
   } catch (error) {
     console.error("Error in tokenValidation.js", error);

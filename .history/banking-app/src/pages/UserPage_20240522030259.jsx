@@ -35,7 +35,6 @@ const UserPage = () => {
               Edit Name
             </button>
           )}
-          {isEditing && <h2>Edit user info</h2>}
         </div>
         {status === "loading" && <p>Loading...</p>}
         {error && <p>{error}</p>}

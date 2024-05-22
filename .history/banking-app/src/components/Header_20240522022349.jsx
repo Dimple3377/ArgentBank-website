@@ -36,7 +36,7 @@ const Header = () => {
           <>
             <Link className="main-nav-item" to="/user">
               <i className="fa fa-user-circle"></i>
-              {user.userName}
+              {user.firstName} {user.lastName}
             </Link>
             <Link className="main-nav-item" to="/" onClick={handleLogout}>
               <i className="fa fa-sign-out"></i>

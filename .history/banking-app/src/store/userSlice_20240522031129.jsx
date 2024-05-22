@@ -35,7 +35,6 @@ export const updateUser = createAsyncThunk(
   async (userData, { getState }) => {
     const state = getState();
     const token = state.user.token;
-    console.log("Token used for update:", token); // Debugging line
     const response = await axios.put(
       "http://localhost:3001/api/v1/user/profile",
       userData,

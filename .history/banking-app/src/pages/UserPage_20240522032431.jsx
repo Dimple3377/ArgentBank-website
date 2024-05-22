@@ -32,10 +32,9 @@ const UserPage = () => {
           </h1>
           {!isEditing && (
             <button className="edit-button" onClick={toggleEdit}>
-              Edit Name
+              Edit user info
             </button>
           )}
-          {isEditing && <h2>Edit user info</h2>}
         </div>
         {status === "loading" && <p>Loading...</p>}
         {error && <p>{error}</p>}

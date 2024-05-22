@@ -1,7 +1,7 @@
-import React, { useEffect } from "react";
-import { Link } from "react-router-dom";
+import React from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { logout, fetchUserProfile } from "../store/userSlice";
+import { Link } from "react-router-dom";
+import { logout } from "../store/userSlice"; // Assure-toi que logout est correctement exporté
 import logo from "../assets/img/argentBankLogo.png";
 import "font-awesome/css/font-awesome.min.css";
 
@@ -9,17 +9,9 @@ const Header = () => {
   const dispatch = useDispatch();
   const { user } = useSelector((state) => state.user);
 
-  useEffect(() => {
-    if (!user) {
-      dispatch(fetchUserProfile());
-    }
-  }, [dispatch, user]);
-
   const handleLogout = () => {
     dispatch(logout());
   };
-
-  console.log("Current User:", user); // Debug
 
   return (
     <nav className="main-nav">
@@ -36,7 +28,7 @@ const Header = () => {
           <>
             <Link className="main-nav-item" to="/user">
               <i className="fa fa-user-circle"></i>
-              {user.userName}
+              {user.firstName}
             </Link>
             <Link className="main-nav-item" to="/" onClick={handleLogout}>
               <i className="fa fa-sign-out"></i>

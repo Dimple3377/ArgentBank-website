@@ -3,39 +3,24 @@ import axios from "axios";
 
 const initialState = {
   user: null,
-  token: null,
   status: "idle",
   error: null,
 };
 
 // Thunks
-export const loginUser = createAsyncThunk(
-  "user/login",
-  async (credentials, { dispatch }) => {
-    const response = await axios.post(
-      "http://localhost:3001/api/v1/user/login",
-      credentials
-    );
-    const token = response.data.body.token;
-    // Fetch user profile after login
-    const userProfileResponse = await axios.get(
-      "http://localhost:3001/api/v1/user/profile",
-      {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      }
-    );
-    return { ...userProfileResponse.data.body, token };
-  }
-);
+export const loginUser = createAsyncThunk("user/login", async (credentials) => {
+  const response = await axios.post(
+    "http://localhost:3001/api/v1/user/login",
+    credentials
+  );
+  return response.data.body;
+});
 
 export const updateUser = createAsyncThunk(
   "user/update",
   async (userData, { getState }) => {
     const state = getState();
-    const token = state.user.token;
-    console.log("Token used for update:", token); // Debugging line
+    const token = state.user.user.token;
     const response = await axios.put(
       "http://localhost:3001/api/v1/user/profile",
       userData,
@@ -53,7 +38,7 @@ export const fetchUserProfile = createAsyncThunk(
   "user/fetchProfile",
   async (_, { getState }) => {
     const state = getState();
-    const token = state.user.token;
+    const token = state.user.user.token;
     const response = await axios.get(
       "http://localhost:3001/api/v1/user/profile",
       {
@@ -72,7 +57,6 @@ const userSlice = createSlice({
   reducers: {
     logout: (state) => {
       state.user = null;
-      state.token = null;
       state.status = "idle";
       state.error = null;
     },
@@ -83,10 +67,8 @@ const userSlice = createSlice({
         state.status = "loading";
       })
       .addCase(loginUser.fulfilled, (state, action) => {
-        console.log("Login fulfilled:", action.payload); // Debug
         state.status = "succeeded";
         state.user = action.payload;
-        state.token = action.payload.token;
         state.error = null;
       })
       .addCase(loginUser.rejected, (state, action) => {
@@ -97,7 +79,6 @@ const userSlice = createSlice({
         state.status = "loading";
       })
       .addCase(updateUser.fulfilled, (state, action) => {
-        console.log("Update fulfilled:", action.payload); // Debug
         state.status = "succeeded";
         state.user = { ...state.user, ...action.payload };
         state.error = null;
@@ -110,7 +91,6 @@ const userSlice = createSlice({
         state.status = "loading";
       })
       .addCase(fetchUserProfile.fulfilled, (state, action) => {
-        console.log("Fetch profile fulfilled:", action.payload); // Debug
         state.status = "succeeded";
         state.user = action.payload;
         state.error = null;

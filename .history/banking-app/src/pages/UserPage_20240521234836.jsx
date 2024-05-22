@@ -1,3 +1,4 @@
+// src/pages/UserPage.jsx
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchUserProfile } from "../store/userSlice";
@@ -28,19 +29,17 @@ const UserPage = () => {
           <h1>
             Welcome back
             <br />
-            {user ? `${user.firstName} ${user.lastName}` : "Loading..."}!
+            {user ? `${user.firstName} ${user.lastName}` : "Loading..."}
           </h1>
-          {!isEditing && (
-            <button className="edit-button" onClick={toggleEdit}>
-              Edit Name
-            </button>
-          )}
-          {isEditing && <h2>Edit user info</h2>}
+          <button className="edit-button" onClick={toggleEdit}>
+            {isEditing ? "Cancel" : "Edit Name"}
+          </button>
         </div>
         {status === "loading" && <p>Loading...</p>}
         {error && <p>{error}</p>}
-        {isEditing && <EditNameForm toggleEdit={toggleEdit} />}
-        {!isEditing && (
+        {isEditing ? (
+          <EditNameForm toggleEdit={toggleEdit} />
+        ) : (
           <div>
             <h2 className="sr-only">Accounts</h2>
             <section className="account">
