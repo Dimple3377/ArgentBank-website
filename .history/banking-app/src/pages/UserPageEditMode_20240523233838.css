@@ -1,0 +1,23 @@
+/* UserPageEditMode.css */
+
+.edit-mode .header {
+  background-color: #f8f9fa;
+  padding: 20px;
+}
+
+.edit-mode .header h2 {
+  color: #007bff;
+}
+
+.edit-mode .main {
+  background-color: #ffffff;
+  padding: 20px;
+  border-radius: 5px;
+}
+
+.edit-mode .account {
+  margin-top: 20px;
+  border: 1px solid #007bff;
+  border-radius: 5px;
+  padding: 20px;
+}

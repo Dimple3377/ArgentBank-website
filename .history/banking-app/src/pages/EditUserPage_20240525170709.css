@@ -1,0 +1,48 @@
+/* EditUserPage.css */
+
+.main {
+  background-color: #f5f5f5;
+  min-height: 100vh;
+}
+
+.header {
+  text-align: center;
+  padding: 20px;
+}
+
+.edit-button {
+  background-color: #00bfff;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  cursor: pointer;
+}
+
+.edit-button:hover {
+  background-color: #009acd;
+}
+
+.account {
+  background-color: white;
+  border: 1px solid #ccc;
+  padding: 20px;
+  margin: 20px;
+}
+
+.account-content-wrapper {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.transaction-button {
+  background-color: #00bfff;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  cursor: pointer;
+}
+
+.transaction-button:hover {
+  background-color: #009acd;
+}

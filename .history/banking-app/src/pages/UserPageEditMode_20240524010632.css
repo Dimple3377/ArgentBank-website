@@ -1,0 +1,51 @@
+/* UserPageEditMode.css */
+/* Styles pour le mode édition */
+
+.edit-button {
+  margin-top: 10px;
+  padding: 10px 20px;
+  background-color: #00b4d8;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.edit-button:hover {
+  background-color: #0096c7;
+}
+
+.edit-name-form {
+  margin-bottom: 20px;
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 5px;
+}
+
+/* Styles pour les boutons de sauvegarde et d'annulation */
+.save-button,
+.cancel-button {
+  padding: 10px 20px;
+  margin-right: 10px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.save-button {
+  background-color: #00b4d8;
+  color: #fff;
+}
+
+.cancel-button {
+  background-color: #adb5bd;
+  color: #fff;
+}
+
+.save-button:hover {
+  background-color: #0096c7;
+}
+
+.cancel-button:hover {
+  background-color: #868e96;
+}

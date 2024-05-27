@@ -1,0 +1,73 @@
+/* EditUserPage.css */
+.edit-user-main {
+  padding: 20px;
+}
+
+.edit-user-header {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.input-wrapper {
+  margin-bottom: 15px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.input-wrapper label {
+  margin-bottom: 5px;
+  font-size: 16px; /* Taille de la police des labels */
+  font-weight: bold;
+}
+
+.input-wrapper input {
+  width: 200px; /* Largeur fixe pour les champs de saisie */
+  padding: 10px; /* Padding pour les champs de saisie */
+  font-size: 16px; /* Taille de la police des champs */
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+.edit-button {
+  padding: 10px 20px; /* Padding des boutons */
+  font-size: 16px; /* Taille de la police des boutons */
+  margin-right: 10px;
+  background-color: #00bc77;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.edit-button:hover {
+  background-color: #00a566;
+}
+
+.transaction-button {
+  padding: 10px 20px;
+  font-size: 16px;
+  margin-top: 10px;
+  background-color: #00bc77;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.transaction-button:hover {
+  background-color: #00a566;
+}
+
+.account-content-wrapper {
+  margin-bottom: 20px;
+}
+
+.form-buttons {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  max-width: 400px;
+  margin: 0 auto;
+  margin-top: 20px;
+}

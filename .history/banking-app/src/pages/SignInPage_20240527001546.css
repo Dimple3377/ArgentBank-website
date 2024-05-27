@@ -1,0 +1,46 @@
+/* Assurez-vous que ce fichier est importé dans SignInPage.jsx */
+body,
+html {
+  height: 100%;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+}
+
+.sign-in-main {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+.sign-in-content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: #3b0066; /* Couleur violette */
+}
+
+.sign-in-icon {
+  font-size: 4rem;
+  color: #2e7d32;
+}
+
+.sign-in-content h1 {
+  margin-bottom: 2rem;
+}
+
+.sign-in-content form {
+  width: 100%;
+  max-width: 320px;
+}
+
+footer {
+  margin-top: auto;
+  width: 100%;
+  text-align: center;
+  padding: 1rem 0;
+  background-color: #fff;
+  color: #000;
+}
