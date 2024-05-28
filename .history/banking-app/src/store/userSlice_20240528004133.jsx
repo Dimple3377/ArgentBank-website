@@ -14,7 +14,7 @@ export const loginUser = createAsyncThunk("user/login", async (credentials) => {
     "http://localhost:3001/api/v1/user/login",
     credentials
   );
-  return { user: response.data.body.user, token: response.data.body.token };
+  return { user: response.data.body, token: response.data.body.token };
 });
 
 // Thunk pour la mise à jour du profil utilisateur

@@ -1,11 +1,11 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { updateUser } from "../store/userSlice";
-
-import "../components/EditNameForm.css";
+import { useNavigate } from "react-router-dom";
 
 const EditNameForm = ({ onSave, onCancel }) => {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
   const { user } = useSelector((state) => state.user);
 
   const [firstName, setFirstName] = useState(user?.firstName || "");
@@ -16,6 +16,7 @@ const EditNameForm = ({ onSave, onCancel }) => {
   const handleSubmit = (e) => {
     e.preventDefault();
     const updatedUser = { firstName, lastName, userName };
+    console.log("Données du formulaire:", updatedUser);
     dispatch(updateUser(updatedUser)).then((response) => {
       if (response.meta.requestStatus === "fulfilled") {
         setUpdateSuccess(true);

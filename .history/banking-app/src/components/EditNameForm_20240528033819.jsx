@@ -1,8 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { updateUser } from "../store/userSlice";
-
-import "../components/EditNameForm.css";
+import { useNavigate } from "react-router-dom";
 
 const EditNameForm = ({ onSave, onCancel }) => {
   const dispatch = useDispatch();

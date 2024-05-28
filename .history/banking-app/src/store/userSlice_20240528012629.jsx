@@ -14,7 +14,7 @@ export const loginUser = createAsyncThunk("user/login", async (credentials) => {
     "http://localhost:3001/api/v1/user/login",
     credentials
   );
-  return { user: response.data.body.user, token: response.data.body.token };
+  return { user: response.data.body, token: response.data.body.token };
 });
 
 // Thunk pour la mise à jour du profil utilisateur
@@ -22,7 +22,7 @@ export const updateUser = createAsyncThunk(
   "user/update",
   async (userData, { getState }) => {
     const state = getState();
-    const token = state.user.token;
+    const token = state.user.token; // Récupération du token dans le state
     const response = await axios.put(
       "http://localhost:3001/api/v1/user/profile",
       userData,
@@ -60,7 +60,7 @@ const userSlice = createSlice({
   reducers: {
     logout: (state) => {
       state.user = null;
-      state.token = null;
+      state.token = null; // Réinitialisation du token
       state.status = "idle";
       state.error = null;
     },
@@ -72,8 +72,8 @@ const userSlice = createSlice({
       })
       .addCase(loginUser.fulfilled, (state, action) => {
         state.status = "succeeded";
-        state.user = action.payload.user;
-        state.token = action.payload.token;
+        state.user = action.payload.user; // Stockage de l'utilisateur
+        state.token = action.payload.token; // Stockage du token
         state.error = null;
       })
       .addCase(loginUser.rejected, (state, action) => {

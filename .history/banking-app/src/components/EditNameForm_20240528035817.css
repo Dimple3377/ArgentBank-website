@@ -1,0 +1,51 @@
+.edit-name-form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  max-width: 400px;
+  margin: 0 auto;
+}
+
+.input-wrapper {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  width: 100%;
+  margin-bottom: 1rem;
+}
+
+.input-wrapper label {
+  margin-right: 1rem;
+  font-weight: bold;
+  width: 100px;
+}
+
+.input-wrapper input {
+  flex: 1;
+  padding: 0.5rem;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+.button-container {
+  display: flex;
+  justify-content: space-between; /* Changed to space-between for equal spacing */
+  width: 100%;
+}
+
+.edit-button {
+  padding: 0.5rem;
+  margin: 0.5rem;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  flex: 1; /* Make buttons take equal space */
+  text-align: center; /* Center text in buttons */
+}
+
+.edit-button:first-child {
+  margin-right: 1rem; /* Add space between buttons */
+}

@@ -1,12 +1,15 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchUserProfile } from "../store/userSlice";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
+import { useNavigate } from "react-router-dom";
+import EditUserPage from "./EditUserPage";
 import EditNameForm from "../components/EditNameForm";
 
 const UserPage = () => {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
   const { user, status, error } = useSelector((state) => state.user);
 
   useEffect(() => {
@@ -15,35 +18,27 @@ const UserPage = () => {
     }
   }, [dispatch, user]);
 
-  const [isEditFormVisible, setEditFormVisible] = useState(false);
-
-  const toggleEditForm = () => {
-    setEditFormVisible(!isEditFormVisible);
+  const goToEditUser = () => {
+    navigate("/edit-user");
   };
 
   return (
     <>
       <Header />
-      <main className={`main bg-dark ${isEditFormVisible ? "edit-mode" : ""}`}>
+      <main className="main bg-dark">
         <div className="header">
           <h1>
             Welcome back
             <br />
             {user ? `${user.firstName} ${user.lastName}!` : "Loading..."}
           </h1>
-          {!isEditFormVisible && (
-            <button className="edit-button" onClick={toggleEditForm}>
-              Edit Name
-            </button>
-          )}
+          <button className="edit-button" onClick={goToEditUser}>
+            Edit Name
+          </button>
+          <EditNameForm></EditNameForm>
         </div>
         {status === "loading" && <p>Loading...</p>}
         {error && <p>{error}</p>}
-        {isEditFormVisible && (
-          <div className="edit-section">
-            <EditNameForm onSave={toggleEditForm} onCancel={toggleEditForm} />
-          </div>
-        )}
         <div>
           <h2 className="sr-only">Accounts</h2>
           <section className="account">

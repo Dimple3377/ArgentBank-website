@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { updateUser } from "../store/userSlice";
-
+import { useNavigate } from "react-router-dom";
 import "../components/EditNameForm.css";
 
 const EditNameForm = ({ onSave, onCancel }) => {
