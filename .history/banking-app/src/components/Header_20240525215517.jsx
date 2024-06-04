@@ -2,7 +2,7 @@ import React from "react";
 import { Link, useLocation } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { logout } from "../store/userSlice";
-import logo from "../assets/img/argentBankLogo.png";
+import logo from "../assets/img/argentBankLogo.webp";
 import "font-awesome/css/font-awesome.min.css";
 
 const Header = () => {

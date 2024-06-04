@@ -3,9 +3,9 @@ import Header from "../components/Header";
 import Hero from "../components/Hero";
 import Feature from "../components/Feature";
 import Footer from "../components/Footer";
-import chatIcon from "../img/icon-chat.png";
-import moneyIcon from "../img/icon-money.png";
-import securityIcon from "../img/icon-security.png";
+import chatIcon from "../img/icon-chat.webp";
+import moneyIcon from "../img/icon-money.webp";
+import securityIcon from "../img/icon-security.webp";
 
 const HomePage = () => {
   return (
