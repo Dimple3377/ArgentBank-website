@@ -19,6 +19,8 @@ body {
 
 .bg-dark {
   background-color: #12002b;
+  padding-top: 0.5rem;
+  padding-bottom: 45.5rem;
 }
 
 .sr-only {

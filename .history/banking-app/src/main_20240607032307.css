@@ -20,10 +20,6 @@ body {
 .bg-dark {
   background-color: #12002b;
 }
-.sign-in-page {
-  padding-top: 0.5rem;
-  padding-bottom: 45.4rem;
-}
 
 .sr-only {
   border: 0 !important;

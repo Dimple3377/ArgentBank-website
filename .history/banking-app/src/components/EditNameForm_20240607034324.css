@@ -9,6 +9,7 @@
 }
 .bg-dark {
   background-color: #12002b;
+  padding: 0;
 }
 
 .input-wrapper {

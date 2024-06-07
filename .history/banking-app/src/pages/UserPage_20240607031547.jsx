@@ -44,7 +44,7 @@ const UserPage = () => {
             <EditNameForm onSave={toggleEditForm} onCancel={toggleEditForm} />
           </div>
         )}
-        <div style={{ height: "61rem" }}>
+        <div style={{ padding: "28rem" }}>
           <h2 className="sr-only">Accounts</h2>
           <section className="account">
             <div className="account-content-wrapper">

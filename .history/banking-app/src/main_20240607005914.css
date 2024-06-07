@@ -20,23 +20,19 @@ body {
 .bg-dark {
   background-color: #12002b;
 }
-.sign-in-page {
-  padding-top: 0.5rem;
-  padding-bottom: 45.4rem;
-}
 
 .sr-only {
   border: 0 !important;
-  clip: rect(1px, 1px, 1px, 1px) !important;
+  clip: rect(1px, 1px, 1px, 1px) !important; /* 1 */
   -webkit-clip-path: inset(50%) !important;
-  clip-path: inset(50%) !important;
+  clip-path: inset(50%) !important; /* 2 */
   height: 1px !important;
   margin: -1px !important;
   overflow: hidden !important;
   padding: 0 !important;
   position: absolute !important;
   width: 1px !important;
-  white-space: nowrap !important;
+  white-space: nowrap !important; /* 3 */
 }
 
 .main-nav {
@@ -75,7 +71,7 @@ body {
 }
 
 .hero {
-  background-image: url("../src/assets/img/bank-tree.webp");
+  background-image: url("../img/bank-tree.webp");
   background-position: 0 -50px;
   background-size: cover;
   background-repeat: no-repeat;
@@ -199,6 +195,7 @@ body {
 
 .input-wrapper label {
   font-weight: bold;
+  color: white;
 }
 
 .input-wrapper input {
@@ -265,8 +262,7 @@ body {
 
 .header {
   color: #fff;
-
-  padding: 1rem;
+  margin-bottom: 2rem;
 }
 
 .transaction-button {

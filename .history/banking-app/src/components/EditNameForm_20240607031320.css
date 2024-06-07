@@ -7,9 +7,6 @@
   margin: 0 auto;
   margin-bottom: 1rem;
 }
-.bg-dark {
-  background-color: #12002b;
-}
 
 .input-wrapper {
   display: flex;
@@ -26,7 +23,7 @@
 }
 
 .input-wrapper input {
-  width: 90%;
+  width: 100%;
   padding: 0.5rem;
   border: 1px solid #ccc;
   border-radius: 4px;

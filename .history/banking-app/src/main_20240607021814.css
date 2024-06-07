@@ -14,15 +14,12 @@ body {
 }
 
 .main {
+  display: flex;
   flex: 1;
 }
 
 .bg-dark {
   background-color: #12002b;
-}
-.sign-in-page {
-  padding-top: 0.5rem;
-  padding-bottom: 45.4rem;
 }
 
 .sr-only {
@@ -176,6 +173,7 @@ body {
   margin: 0 auto;
   margin-top: 3rem;
   padding: 2rem;
+  margin-bottom: 45rem;
 }
 
 .sign-in-icon {
@@ -265,8 +263,7 @@ body {
 
 .header {
   color: #fff;
-
-  padding: 1rem;
+  margin-bottom: 2rem;
 }
 
 .transaction-button {
