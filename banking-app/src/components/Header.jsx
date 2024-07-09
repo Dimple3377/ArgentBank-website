@@ -32,7 +32,6 @@ const Header = () => {
       <div>
         {location.pathname === "/edit-user" ? (
           <>
-            {/* icônes spécifiques à EditUserPage */}
             <span>{user?.userName}</span>
             <i className="fa fa-user-circle"></i>
             <i className="fa fa-cog"></i>
