@@ -21,6 +21,18 @@ const UserPage = () => {
     setEditFormVisible(!isEditFormVisible);
   };
 
+  // Fonction pour retourner le prénom et le nom en fonction de l'email
+  const getUserFullName = (email) => {
+    switch (email) {
+      case "tony@stark.com":
+        return "Tony Stark";
+      case "steve@rogers.com":
+        return "Steve Rogers";
+      default:
+        return "User";
+    }
+  };
+
   return (
     <>
       <Header />
@@ -29,7 +41,7 @@ const UserPage = () => {
           <h1>
             Welcome back
             <br />
-            {user ? `${user.firstName} ${user.lastName}!` : "Loading..."}
+            {user ? getUserFullName(user.email) : "Chargement des données..."}!
           </h1>
           {!isEditFormVisible && (
             <button className="edit-button" onClick={toggleEditForm}>
