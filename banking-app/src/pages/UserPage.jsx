@@ -1,19 +1,31 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { fetchUserProfile } from "../store/userSlice";
+import { fetchUserProfile, selectToken } from "../store/userSlice";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
 import EditNameForm from "../components/EditNameForm";
+import AccountCard from "../components/AccountCard";
+import { useNavigate } from "react-router-dom";
 
 const UserPage = () => {
   const dispatch = useDispatch();
   const { user, status, error } = useSelector((state) => state.user);
+  const token = useSelector(selectToken);
+  const navigate = useNavigate();
 
   useEffect(() => {
-    if (!user) {
+    if (!token) {
+      navigate("/sign-in");
+    } else if (!user && status !== "loading") {
       dispatch(fetchUserProfile());
     }
-  }, [dispatch, user]);
+  }, [token, user, status, dispatch, navigate]);
+
+  useEffect(() => {
+    if (user) {
+      console.log("User data:", user);
+    }
+  }, [user]);
 
   const [isEditFormVisible, setEditFormVisible] = useState(false);
 
@@ -21,17 +33,9 @@ const UserPage = () => {
     setEditFormVisible(!isEditFormVisible);
   };
 
-  // Fonction pour retourner le prénom et le nom en fonction de l'email
-  const getUserFullName = (email) => {
-    switch (email) {
-      case "tony@stark.com":
-        return "Tony Stark";
-      case "steve@rogers.com":
-        return "Steve Rogers";
-      default:
-        return "User";
-    }
-  };
+  const displayName = user
+    ? `${user.firstName || ""} ${user.lastName || ""}`
+    : "Chargement des données...";
 
   return (
     <>
@@ -41,7 +45,7 @@ const UserPage = () => {
           <h1>
             Welcome back
             <br />
-            {user ? getUserFullName(user.email) : "Chargement des données..."}!
+            {displayName}!
           </h1>
           {!isEditFormVisible && (
             <button className="edit-button" onClick={toggleEditForm}>
@@ -58,36 +62,26 @@ const UserPage = () => {
         )}
         <div style={{ height: "61rem" }}>
           <h2 className="sr-only">Accounts</h2>
-          <section className="account">
-            <div className="account-content-wrapper">
-              <h3 className="account-title">Argent Bank Checking (x8349)</h3>
-              <p className="account-amount">$2,082.79</p>
-              <p className="account-amount-description">Available Balance</p>
-            </div>
-            <div className="account-content-wrapper cta">
-              <button className="transaction-button">View transactions</button>
-            </div>
-          </section>
-          <section className="account">
-            <div className="account-content-wrapper">
-              <h3 className="account-title">Argent Bank Savings (x6712)</h3>
-              <p className="account-amount">$10,928.42</p>
-              <p className="account-amount-description">Available Balance</p>
-            </div>
-            <div className="account-content-wrapper cta">
-              <button className="transaction-button">View transactions</button>
-            </div>
-          </section>
-          <section className="account">
-            <div className="account-content-wrapper">
-              <h3 className="account-title">Argent Bank Credit Card (x8349)</h3>
-              <p className="account-amount">$184.30</p>
-              <p className="account-amount-description">Current Balance</p>
-            </div>
-            <div className="account-content-wrapper cta">
-              <button className="transaction-button">View transactions</button>
-            </div>
-          </section>
+          <AccountCard
+            title="Argent Bank Checking (x8349)"
+            amount="$2,082.79"
+            description="Available Balance"
+            onViewTransactions={() => console.log("View Checking Transactions")}
+          />
+          <AccountCard
+            title="Argent Bank Savings (x6712)"
+            amount="$10,928.42"
+            description="Available Balance"
+            onViewTransactions={() => console.log("View Savings Transactions")}
+          />
+          <AccountCard
+            title="Argent Bank Credit Card (x8349)"
+            amount="$184.30"
+            description="Current Balance"
+            onViewTransactions={() =>
+              console.log("View Credit Card Transactions")
+            }
+          />
         </div>
       </main>
       <Footer />

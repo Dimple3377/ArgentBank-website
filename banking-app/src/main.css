@@ -20,6 +20,7 @@ body {
 .bg-dark {
   background-color: #12002b;
 }
+
 .sign-in-page {
   padding-top: 0.5rem;
   padding-bottom: 45.4rem;
@@ -218,6 +219,13 @@ body {
   padding: 0;
 }
 
+.accounts {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  padding-bottom: 30rem;
+}
+
 .account {
   display: flex;
   justify-content: space-between;
@@ -265,7 +273,6 @@ body {
 
 .header {
   color: #fff;
-
   padding: 1rem;
 }
 

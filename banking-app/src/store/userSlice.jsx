@@ -3,7 +3,7 @@ import axios from "axios";
 
 const initialState = {
   user: null,
-  token: null,
+  token: localStorage.getItem("token") || null,
   status: "idle",
   error: null,
 };
@@ -14,7 +14,6 @@ export const loginUser = createAsyncThunk("user/login", async (credentials) => {
     "http://localhost:3001/api/v1/user/login",
     credentials
   );
-  console.log("Réponse de l'API login:", response.data);
   return { user: response.data.body.user, token: response.data.body.token };
 });
 
@@ -23,7 +22,6 @@ export const updateUser = createAsyncThunk(
   "user/update",
   async (userData, { getState }) => {
     const token = localStorage.getItem("token");
-    console.log("Token utilisé pour updateUser:", token);
     const response = await axios.put(
       "http://localhost:3001/api/v1/user/profile",
       userData,
@@ -42,7 +40,6 @@ export const fetchUserProfile = createAsyncThunk(
   "user/fetchProfile",
   async (_, { getState }) => {
     const token = localStorage.getItem("token");
-    console.log("Token utilisé pour fetchUserProfile:", token);
     const response = await axios.get(
       "http://localhost:3001/api/v1/user/profile",
       {
@@ -51,7 +48,6 @@ export const fetchUserProfile = createAsyncThunk(
         },
       }
     );
-    console.log("Réponse de l'API fetchUserProfile:", response.data);
     return response.data.body;
   }
 );
@@ -67,6 +63,12 @@ const userSlice = createSlice({
       state.status = "idle";
       state.error = null;
     },
+    restoreUser: (state) => {
+      const token = localStorage.getItem("token");
+      if (token) {
+        state.token = token;
+      }
+    },
   },
   extraReducers: (builder) => {
     builder
@@ -75,7 +77,6 @@ const userSlice = createSlice({
       })
       .addCase(loginUser.fulfilled, (state, action) => {
         state.status = "succeeded";
-        console.log("Payload reçu de loginUser:", action.payload);
         state.user = action.payload.user;
         state.token = action.payload.token;
         localStorage.setItem("token", state.token);
@@ -112,6 +113,7 @@ const userSlice = createSlice({
   },
 });
 
-export const { logout } = userSlice.actions;
+export const { logout, restoreUser } = userSlice.actions;
 
 export default userSlice.reducer;
+export const selectToken = (state) => state.user.token;
